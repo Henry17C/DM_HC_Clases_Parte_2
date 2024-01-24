@@ -3,18 +3,20 @@ package com.examenp.dillan.dispositivosm_recyclewie_dc.ui.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.examenp.dillan.dispositivosm_recyclewie_dc.R
 import com.examenp.dillan.dispositivosm_recyclewie_dc.data.entities.Users
 import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.UsersItemsBinding
 
-class UsersAdapter(
+class UsersAdapterDiffUtil(
    private val onDeleteItem:(Int)-> Unit,
    private val onSelectItem:(Users)->Unit)
-    :RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
+    :ListAdapter<Users, UsersAdapterDiffUtil.UsersViewHolder>(DiffUtilUserCallBack) {
 
-    public var listUsers: List<Users> = listOf()
+
 
     class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //se maneja los elementos(items)  uno por uno iterativamente. Esta se
@@ -45,12 +47,23 @@ class UsersAdapter(
 
     }
 
-    //cuantos elementos hay para poder pintar en pantalla
-    override fun getItemCount(): Int = listUsers.size
+
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
-        holder.render(listUsers[position], onDeleteItem, onSelectItem)
+        holder.render(getItem(position), onDeleteItem, onSelectItem)
     }
 
 
 }
+
+    private object DiffUtilUserCallBack: DiffUtil.ItemCallback<Users>() {
+        override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+          return  (oldItem.id== newItem.id)// comparacion de algo que sea unico
+        }
+
+        override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+            return  (oldItem== newItem)
+        }
+
+
+    }
