@@ -23,5 +23,22 @@
             android:name="idAnime"
             app:argType="integer"
             android:defaultValue="-99" />
+
+        <argument
+            android:name="animeDesc"
+            app:argType="string"
+            android:defaultValue=" " />
+
+        <argument
+            android:name="animeNombre"
+            app:argType="string"
+            android:defaultValue=" " />
+
+        <argument
+            android:name="animeImg"
+            app:argType="string"
+            android:defaultValue=" " />
+
+
     </fragment>
 </navigation>

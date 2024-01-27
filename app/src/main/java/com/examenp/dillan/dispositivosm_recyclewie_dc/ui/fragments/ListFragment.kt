@@ -98,7 +98,9 @@ class ListFragment : Fragment() {
 
     private  fun selectAnime(anime: FullInfoAnimeLG){
         //Snackbar.make(requireActivity(), binding.rvUsers, anime.name, Snackbar.LENGTH_LONG).show()
-        findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(idAnime=anime.id))
+        findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(idAnime=anime.id, animeDesc = anime.synapsis, animeNombre = anime.name, animeImg = anime.big_image))
+        //findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(animeDesc = anime.synapsis))
+      //  findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(anime)
 
 
 

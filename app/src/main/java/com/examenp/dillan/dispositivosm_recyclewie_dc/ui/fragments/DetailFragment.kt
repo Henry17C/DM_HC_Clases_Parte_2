@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.examenp.dillan.dispositivosm_recyclewie_dc.R
 import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.FragmentDetailBinding
 
@@ -31,6 +32,9 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.txtIdAnime.text= args.idAnime.toString()
+        binding.animDesc.text=args.animeDesc.toString()
+       binding.animName.text=args.animeNombre.toString()
+        binding.imgAnim.load(args.animeImg)
     }
 
 }
