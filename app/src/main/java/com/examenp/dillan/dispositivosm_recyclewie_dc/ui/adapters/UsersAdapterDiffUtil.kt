@@ -10,25 +10,26 @@ import coil.load
 import com.examenp.dillan.dispositivosm_recyclewie_dc.R
 import com.examenp.dillan.dispositivosm_recyclewie_dc.data.entities.Users
 import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.UsersItemsBinding
+import com.test.dm_clases_hc.logic.entities.FullInfoAnimeLG
 
 class UsersAdapterDiffUtil(
    private val onDeleteItem:(Int)-> Unit,
-   private val onSelectItem:(Users)->Unit)
-    :ListAdapter<Users, UsersAdapterDiffUtil.UsersViewHolder>(DiffUtilUserCallBack) {
+   private val onSelectItem:(FullInfoAnimeLG)->Unit)
+    :ListAdapter<FullInfoAnimeLG, UsersAdapterDiffUtil.UsersViewHolder>(DiffUtilUserCallBack) {
 
 
 
-    class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class UsersViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         //se maneja los elementos(items)  uno por uno iterativamente. Esta se
         // manera de acuerdo a las necesidades de la aplicacion, es maneja la logica ligada a la UI, no a la logica de negocio
         private var binding: UsersItemsBinding = UsersItemsBinding.bind(view)
 
-        fun render(item: Users,
+        fun render(item: FullInfoAnimeLG,
                    onDeleteItem:(Int)-> Unit,
-                   onSelectItem:(Users)->Unit) {
+                   onSelectItem:(FullInfoAnimeLG)->Unit) {
             binding.UserName.text=item.name
-            binding.UserDesc.text=item.desc
-            binding.imgUser.load(item.img)
+            binding.UserDesc.text=item.synapsis
+            binding.imgUser.load(item.big_image)
             binding.btnBorrar.setOnClickListener {
                 onDeleteItem(adapterPosition)
             }
@@ -56,12 +57,12 @@ class UsersAdapterDiffUtil(
 
 }
 
-    private object DiffUtilUserCallBack: DiffUtil.ItemCallback<Users>() {
-        override fun areItemsTheSame(oldItem: Users, newItem: Users): Boolean {
+    private object DiffUtilUserCallBack: DiffUtil.ItemCallback<FullInfoAnimeLG>() {
+        override fun areItemsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
           return  (oldItem.id== newItem.id)// comparacion de algo que sea unico
         }
 
-        override fun areContentsTheSame(oldItem: Users, newItem: Users): Boolean {
+        override fun areContentsTheSame(oldItem: FullInfoAnimeLG, newItem: FullInfoAnimeLG): Boolean {
             return  (oldItem== newItem)
         }
 

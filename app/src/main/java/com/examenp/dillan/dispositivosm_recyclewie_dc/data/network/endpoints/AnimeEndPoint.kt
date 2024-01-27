@@ -1,0 +1,15 @@
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.endpoints
+
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Part
+import retrofit2.http.Path
+
+interface AnimeEndPoint {
+
+
+    @GET("anime/{id}/full")
+    fun getAnimeFullInfo(@Path("id") name: Integer): Response<com.test.dm_clases_hc.data.network.endpoint.jikan.anime.FullInfoAnime> ///Json transformado a dataclase ´por medio de un plugin
+
+
+}
