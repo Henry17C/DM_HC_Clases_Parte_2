@@ -1,8 +1,8 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Pagination(
     val current_page: Int,
     val has_next_page: Boolean,
-    val items: com.test.dm_clases_hc.data.network.endpoint.jikan.top.Items,
+    val items: Items,
     val last_visible_page: Int
 )

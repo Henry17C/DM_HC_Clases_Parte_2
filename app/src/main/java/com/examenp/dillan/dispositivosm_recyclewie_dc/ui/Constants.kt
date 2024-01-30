@@ -1,4 +1,4 @@
-package com.coyago.testapp.ui.core
+package  com.examenp.dillan.dispositivosm_recyclewie_dc.ui
 
 object Constants {
 

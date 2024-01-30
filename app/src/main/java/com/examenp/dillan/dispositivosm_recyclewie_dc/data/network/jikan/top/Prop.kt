@@ -1,6 +1,6 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Prop(
-    val from: com.test.dm_clases_hc.data.network.endpoint.jikan.top.From,
-    val to: com.test.dm_clases_hc.data.network.endpoint.jikan.top.To
+    val from: From,
+    val to: To
 )

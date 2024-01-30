@@ -9,106 +9,125 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.examenp.dillan.dispositivosm_recyclewie_dc.R
-import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.ActivityMainBinding
-import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.FragmentDetailBinding
 import com.examenp.dillan.dispositivosm_recyclewie_dc.databinding.FragmentListBinding
+import com.examenp.dillan.dispositivosm_recyclewie_dc.logic.entities.FullInfoAnimeLG
+import com.examenp.dillan.dispositivosm_recyclewie_dc.logic.usercases.jikan.JikanGetTopAnimesUserCase
 import com.examenp.dillan.dispositivosm_recyclewie_dc.ui.adapters.UsersAdapterDiffUtil
 import com.google.android.material.snackbar.Snackbar
-import com.test.dm_clases_hc.logic.entities.FullInfoAnimeLG
-import com.test.dm_clases_hc.logic.usercases.jikan.JikanGetTopAnimesUserCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ListFragment : Fragment() {
-    private lateinit var binding: FragmentListBinding
+    private lateinit var binding:FragmentListBinding
 
-   // initRecycleView()
-    private var userList: MutableList<FullInfoAnimeLG> = ArrayList()
-    private var userDiffAdapter= UsersAdapterDiffUtil({deleteUsersDiff(it)},{selectAnime(it)})
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initRecycleView()
-    }
+    private var usersList:MutableList<FullInfoAnimeLG> = ArrayList()
+    private var userDiffAdapter= UsersAdapterDiffUtil(
+        {deleteUsersDiffUtil(it)}, {selectAnime(it)})
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentListBinding.bind(inflater.inflate(R.layout.fragment_list, container, false))
+        binding=FragmentListBinding.bind( inflater.inflate(R.layout.fragment_list, container, false))
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    ///migracion de main hacia el fragment
-    fun initRecycleView() {
-
+        initRecycleViewDiffUtill()
+    }
+    fun initRecycleViewDiffUtill() {
         binding.rvUsers.adapter = userDiffAdapter
         binding.rvUsers.layoutManager = LinearLayoutManager(
             requireActivity(),
-            LinearLayoutManager.VERTICAL, false
+            LinearLayoutManager.VERTICAL,
+            false
         )
-
         loadDataRecyclerView()
 
 
     }
 
-
     private fun loadDataRecyclerView(){
-
-        //llamdo a la api jikan
-
         lifecycleScope.launch(Dispatchers.Main) {
-            binding.progresBar.visibility=View.VISIBLE
+            binding.progresBar.visibility= View.VISIBLE
+
             val resp= withContext(Dispatchers.IO){
                 JikanGetTopAnimesUserCase().invoke()
             }
-            resp.onSuccess { listAnime ->
-                userList.addAll(listAnime)
-                insertUsersDiff(userList)
+            resp.onSuccess {
+                    listAnime ->
+                usersList.addAll(listAnime)
+                insertUsersDiffUtil(usersList)
             }
-
             resp.onFailure {ex->
-                Snackbar.make(requireActivity(), binding.rvUsers, ex.message.toString(), Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireActivity(),binding.rvUsers,ex.message.toString(), Snackbar.LENGTH_LONG).show()
             }
+
+
+            binding.progresBar.visibility= View.GONE//porque ya se inicializo y ya puedo acceder a ella.
+            //caso contrario nunca aparecera
         }
-        binding.progresBar.visibility=View.GONE
+    }
+
+    /*
+    fun initListeners() {
+        binding.btnInsert.setOnClickListener {
+            val us = Users(
+                1,
+                "Daniel $count",
+                "Estudiante",
+                "https://m.media-amazon.com/images/I/51iw5yGdfGL.jpg"
+            )
+            count++
+
+
+            Log.d("List", usersList.toString())
+            insertUsers(us)
+
+        }
+    }
+*/
+    fun initListenersDiffUtil() {
+
+    }
+
+    /*
+    private fun insertUsers(us:Users) {
+        usersList.add(us)
+        usersAdapter.listUsers=usersList
+        usersAdapter.notifyItemInserted(usersList.size)
+                                            //estoy haciendo una notificacion
+                                            //de lo extra que se guarda
+    }
+
+    private fun deleteUsers(position:Int){
+        usersList.removeAt(position)
+        usersAdapter.listUsers=usersList
+        usersAdapter.notifyItemRemoved(position)
+    }
+*/
+    private fun insertUsersDiffUtil(animes:List<FullInfoAnimeLG>) {
+        usersList.addAll(animes)
+        userDiffAdapter.submitList(usersList.toList())
+
     }
 
 
 
-
-    private fun insertUsersDiff(animes: List<FullInfoAnimeLG>) {
-        userList.addAll(animes)
-        userDiffAdapter.submitList(userList.toList())
-
+    private fun deleteUsersDiffUtil(position:Int){
+        usersList.removeAt(position)
+        userDiffAdapter.submitList(usersList.toList())
     }
 
-
-    private fun deleteUsersDiff(position : Int){
-        userList.removeAt(position)
-        userDiffAdapter.submitList(userList.toList())
-
+    private fun selectAnime(anime: FullInfoAnimeLG){
+        findNavController()
+            .navigate(ListFragmentDirections
+                .actionListFragmentToDetailFragment(idAnime = anime.id)
+            )
     }
-
-
-
-
-    private  fun selectAnime(anime: FullInfoAnimeLG){
-        //Snackbar.make(requireActivity(), binding.rvUsers, anime.name, Snackbar.LENGTH_LONG).show()
-        findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(idAnime=anime.id, animeDesc = anime.synapsis, animeNombre = anime.name, animeImg = anime.big_image))
-        //findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(animeDesc = anime.synapsis))
-      //  findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(anime)
-
-
-
-    }
-
-
-
-
 
 
 }

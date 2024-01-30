@@ -1,8 +1,8 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Trailer(
     val embed_url: String,
-    val images: com.test.dm_clases_hc.data.network.endpoint.jikan.top.ImagesX,
+    val images:ImagesX,
     val url: String,
     val youtube_id: String
 )

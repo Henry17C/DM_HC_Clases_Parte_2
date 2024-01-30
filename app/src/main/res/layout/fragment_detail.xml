@@ -3,68 +3,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".ui.fragments.DetailFragment"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.DetailFragment">
+    android:id="@+id/linear"
+    >
 
-
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/txtIdAnime"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        tools:text="Id anime"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
 
 
-        <ImageView
-            android:id="@+id/imgAnim"
-            android:layout_width="232dp"
-            android:layout_height="209dp"
-            android:layout_marginStart="88dp"
-            android:layout_marginTop="100dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        />
+    <TextView
+        android:id="@+id/txtTitleEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Title english"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
 
+
+        />
+    <TextView
+        android:id="@+id/txtDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Duracion"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <TextView
+        android:id="@+id/txtEpisodes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Episodios"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/txtYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Año"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+
+    <TextView
+        android:id="@+id/txtUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Url"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="24sp"
+
+
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
         <TextView
-            android:id="@+id/txtIdAnime"
-            android:layout_width="375dp"
-            android:layout_height="56dp"
-            android:layout_margin="15dp"
-            android:layout_marginTop="348dp"
-            android:gravity="center"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="ID IMAGE" />
-
-        <TextView
-            android:id="@+id/animName"
+            android:id="@+id/sinopsis"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="352dp"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Nombre" />
+            android:layout_height="match_parent"
+            />
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/animDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="220dp"
-            android:maxLines="3"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Desc" />
+    <Button
+        android:id="@+id/btnRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Refrescar" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <ImageView
+        android:id="@+id/imgAnime"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
 </LinearLayout>

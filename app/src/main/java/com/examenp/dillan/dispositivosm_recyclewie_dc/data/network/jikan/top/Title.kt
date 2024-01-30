@@ -1,4 +1,4 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Title(
     val title: String,

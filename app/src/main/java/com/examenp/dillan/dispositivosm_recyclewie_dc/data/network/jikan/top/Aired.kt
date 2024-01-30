@@ -1,8 +1,8 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Aired(
     val from: String,
-    val prop: com.test.dm_clases_hc.data.network.endpoint.jikan.top.Prop,
+    val prop: Prop,
     val string: String,
     val to: String
 )

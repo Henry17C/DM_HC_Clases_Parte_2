@@ -1,4 +1,4 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.anime
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.anime
 
 data class Entry(
     val mal_id: Int,

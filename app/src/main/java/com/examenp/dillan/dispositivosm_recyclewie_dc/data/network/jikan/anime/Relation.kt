@@ -1,6 +1,6 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.anime
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.anime
 
 data class Relation(
-    val entry: List<com.test.dm_clases_hc.data.network.endpoint.jikan.anime.Entry>,
+    val entry: List<Entry>,
     val relation: String
 )

@@ -1,6 +1,6 @@
-package com.test.dm_clases_hc.data.network.endpoint.jikan.top
+package com.examenp.dillan.dispositivosm_recyclewie_dc.data.network.jikan.top
 
 data class Images(
-    val jpg: com.test.dm_clases_hc.data.network.endpoint.jikan.top.Jpg,
-    val webp: com.test.dm_clases_hc.data.network.endpoint.jikan.top.Webp
+    val jpg: Jpg,
+    val webp: Webp
 )
